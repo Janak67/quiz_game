@@ -1,13 +1,13 @@
 class HomeModel {
   int? response_code;
-  ResultsModel? resultsModel;
+  List<ResultsModel>? resultsModel;
 
   HomeModel({this.response_code, this.resultsModel});
 
   factory HomeModel.mapToModel(Map m1) {
     return HomeModel(
       response_code: m1['response_code'],
-      resultsModel: ResultsModel.mapToModel(m1['results']),
+      resultsModel: m1['results'],
     );
   }
 }
