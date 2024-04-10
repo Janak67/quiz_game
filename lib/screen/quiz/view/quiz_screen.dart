@@ -12,6 +12,7 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Center(),
       ),
     );

@@ -14,13 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: InkWell(
-            onTap: () {
+          child: TextButton(
+            onPressed: () {
               Get.toNamed('quiz');
             },
             child: const Text(
               'Start',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 22),
             ),
           ),
         ),
