@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     controller.quizApi();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,9 +29,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Get.toNamed('quiz');
             },
-            child: const Text(
-              'Start',
-              style: TextStyle(fontSize: 22),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(CupertinoIcons.play, size: 34),
+                Text(
+                  'Play',
+                  style: TextStyle(fontSize: 18),
+                )
+              ],
             ),
           ),
         ),
