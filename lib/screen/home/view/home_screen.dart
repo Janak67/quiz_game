@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/home_controller.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -9,6 +11,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeController controller = Get.put(HomeController());
+
+  @override
+  void initState() {
+    super.initState();
+    controller.quizApi();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -5,16 +5,17 @@ class HomeModel {
   HomeModel({this.response_code, this.resultsModel});
 
   factory HomeModel.mapToModel(Map m1) {
+    List l1 = m1['results'];
     return HomeModel(
       response_code: m1['response_code'],
-      resultsModel: m1['results'],
+      resultsModel: l1.map((e) => ResultsModel.mapToModel(e)).toList(),
     );
   }
 }
 
 class ResultsModel {
   String? type, difficulty, category, question, correct_answer;
-  List<String>? incorrect_answers;
+  List? incorrect_answers;
 
   ResultsModel(
       {this.type,

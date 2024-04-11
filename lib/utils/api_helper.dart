@@ -4,6 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:quiz_game/screen/home/model/home_model.dart';
 
 class ApiHelper {
+  static ApiHelper apiHelper = ApiHelper._();
+
+  ApiHelper._();
+
   Future<HomeModel?> quizApiCall() async {
     String apiLink =
         "https://opentdb.com/api.php?amount=10&category=24&type=multiple";
@@ -11,6 +15,8 @@ class ApiHelper {
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       HomeModel homeModel = HomeModel.mapToModel(json);
+
+      print(homeModel);
       return homeModel;
     }
     return null;
