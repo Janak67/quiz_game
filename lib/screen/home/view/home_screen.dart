@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../controller/home_controller.dart';
@@ -24,23 +25,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: TextButton(
-            onPressed: () {
-              Get.toNamed('quiz');
-            },
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(CupertinoIcons.play, size: 34),
-                Text(
-                  'Play',
-                  style: TextStyle(fontSize: 18),
-                )
-              ],
+        body: Stack(
+          children: [
+            Image.asset(
+              'assets/img/start.png',
+              height: MediaQuery.sizeOf(context).height,
+              width: MediaQuery.sizeOf(context).width,
+              fit: BoxFit.cover,
             ),
-          ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: TextButton(
+                onPressed: () {
+                  Get.toNamed('quiz');
+                },
+                child: const Text(
+                  'Start',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
