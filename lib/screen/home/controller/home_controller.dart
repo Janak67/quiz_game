@@ -3,12 +3,21 @@ import 'package:quiz_game/screen/home/model/home_model.dart';
 import 'package:quiz_game/utils/api_helper.dart';
 
 class HomeController extends GetxController {
-  HomeModel? homeModel;
+  Rxn<HomeModel>? homeModel = Rxn();
   RxInt index = 0.obs;
 
   Future<void> quizApi() async {
     HomeModel? h1 = await ApiHelper.apiHelper.quizApiCall();
-    homeModel = h1;
+    homeModel?.value = h1;
     update();
+  }
+
+  Future<void> nextQuestions() async {
+    if (index < homeModel!.value!.resultsModel!.length - 1) {
+      index.value++;
+    } else {
+      index = 0.obs;
+      await quizApi();
+    }
   }
 }
