@@ -13,10 +13,11 @@ class HomeController extends GetxController {
   }
 
   Future<void> nextQuestions() async {
-    if (index < homeModel!.value!.resultsModel!.length - 1) {
+    if (homeModel!.value != null &&
+        index.value < homeModel!.value!.resultsModel!.length - 1) {
       index.value++;
     } else {
-      index = 0.obs;
+      index.value = 0;
       await quizApi();
     }
   }
