@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quiz_game/screen/home/controller/home_controller.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -47,7 +48,6 @@ class _QuizScreenState extends State<QuizScreen> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          width: double.infinity,
           height: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: const BoxDecoration(
@@ -55,83 +55,89 @@ class _QuizScreenState extends State<QuizScreen> {
                   colors: [Colors.blue, Colors.deepOrange],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter)),
-          child: Obx(
-            () => controller.homeModel!.value == null
-                ? const Center(child: CircularProgressIndicator())
-                : Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: const Icon(Icons.cancel_outlined, size: 35),
-                          ),
-                        ),
-                        Stack(
-                          alignment: Alignment.center,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Obx(
+                () => controller.homeModel!.value == null
+                    ? LoadingAnimationWidget.fourRotatingDots(
+                        color: Colors.blueAccent, size: 50)
+                    : Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
                           children: [
-                            Text(
-                              '$seconds',
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 24),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon:
+                                    const Icon(Icons.cancel_outlined, size: 35),
+                              ),
                             ),
-                            SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: CircularProgressIndicator(
-                                value: seconds / 20,
-                                valueColor:
-                                    const AlwaysStoppedAnimation(Colors.black),
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Text(
+                                  '$seconds',
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 24),
+                                ),
+                                SizedBox(
+                                  width: 60,
+                                  height: 60,
+                                  child: CircularProgressIndicator(
+                                    value: seconds / 20,
+                                    valueColor: const AlwaysStoppedAnimation(
+                                        Colors.black),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Image.asset('assets/img/idea.webp', width: 200),
+                            const SizedBox(height: 25),
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Question :-',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 15),
+                              ),
+                            ),
+                            Obx(
+                              () => Text(
+                                '${controller.homeModel!.value!.resultsModel![controller.index.value].question}',
+                                style: const TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ),
+                            ),
+                            Obx(
+                              () => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  options(
+                                      'A. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![0]}'),
+                                  options(
+                                      'B. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![1]}'),
+                                  options(
+                                      'C. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![2]}'),
+                                  options(
+                                      'D. ${controller.homeModel!.value!.resultsModel![controller.index.value].correct_answer}'),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      controller.index.value++;
+                                      controller.nextQuestions();
+                                    },
+                                    child: const Text('Next Question'),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                        Image.asset('assets/img/idea.webp', width: 200),
-                        const SizedBox(height: 25),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Question :-',
-                            style:
-                                TextStyle(color: Colors.black54, fontSize: 15),
-                          ),
-                        ),
-                        Obx(
-                          () => Text(
-                            '${controller.homeModel!.value!.resultsModel![controller.index.value].question}',
-                            style: const TextStyle(
-                                fontSize: 20, color: Colors.black),
-                          ),
-                        ),
-                        Obx(
-                          () => Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              options(
-                                  'A. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![0]}'),
-                              options(
-                                  'B. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![1]}'),
-                              options(
-                                  'C. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![2]}'),
-                              options(
-                                  'D. ${controller.homeModel!.value!.resultsModel![controller.index.value].correct_answer}'),
-                              ElevatedButton(
-                                onPressed: () {
-                                  controller.index.value++;
-                                  controller.nextQuestions();
-                                },
-                                child: const Text('Next Question'),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                      ),
+              ),
+            ),
           ),
         ),
       ),
