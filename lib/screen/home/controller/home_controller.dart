@@ -20,4 +20,15 @@ class HomeController extends GetxController {
       await quizApi();
     }
   }
+/*
+  String calculateResult() {
+    int correctAnswers = 0;
+    for (var result in homeModel!.value!.resultsModel!) {
+      if (result.incorrect_answers == result.correct_answer) {
+        correctAnswers++;
+      }
+    }
+    return '$correctAnswers/${homeModel!.value!.resultsModel!.length}';
+  }
+*/
 }

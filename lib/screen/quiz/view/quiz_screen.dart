@@ -12,13 +12,19 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   HomeController controller = Get.put(HomeController());
-  int seconds = 30;
+  int seconds = 20;
   Timer? timer;
 
   @override
   void initState() {
     super.initState();
     startTimer();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer!.cancel();
   }
 
   startTimer() {
@@ -29,7 +35,7 @@ class _QuizScreenState extends State<QuizScreen> {
         } else {
           controller.index.value++;
           timer.cancel();
-          seconds = 30;
+          seconds = 20;
           startTimer();
         }
       });
@@ -77,7 +83,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               width: 60,
                               height: 60,
                               child: CircularProgressIndicator(
-                                value: seconds / 30,
+                                value: seconds / 20,
                                 valueColor:
                                     const AlwaysStoppedAnimation(Colors.black),
                               ),
@@ -113,6 +119,13 @@ class _QuizScreenState extends State<QuizScreen> {
                                   'C. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![2]}'),
                               options(
                                   'D. ${controller.homeModel!.value!.resultsModel![controller.index.value].correct_answer}'),
+                              ElevatedButton(
+                                onPressed: () {
+                                  controller.index.value++;
+                                  controller.nextQuestions();
+                                },
+                                child: const Text('Next Question'),
+                              ),
                             ],
                           ),
                         ),
@@ -143,11 +156,5 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    timer!.cancel();
   }
 }
