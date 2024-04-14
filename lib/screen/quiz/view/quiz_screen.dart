@@ -56,17 +56,26 @@ class _QuizScreenState extends State<QuizScreen> {
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: const Icon(Icons.cancel_outlined, size: 35),
+                          ),
+                        ),
                         Stack(
                           alignment: Alignment.center,
                           children: [
                             Text(
                               '$seconds',
                               style: const TextStyle(
-                                  color: Colors.black, fontSize: 25),
+                                  color: Colors.black, fontSize: 24),
                             ),
                             SizedBox(
-                              width: 80,
-                              height: 80,
+                              width: 60,
+                              height: 60,
                               child: CircularProgressIndicator(
                                 value: seconds / 30,
                                 valueColor:
@@ -75,66 +84,62 @@ class _QuizScreenState extends State<QuizScreen> {
                             ),
                           ],
                         ),
+                        Image.asset('assets/img/idea.webp', width: 200),
                         const SizedBox(height: 25),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Question :-',
+                            style:
+                                TextStyle(color: Colors.black54, fontSize: 15),
+                          ),
+                        ),
                         Obx(
                           () => Text(
                             '${controller.homeModel!.value!.resultsModel![controller.index.value].question}',
                             style: const TextStyle(
-                                fontSize: 18, color: Colors.black),
+                                fontSize: 20, color: Colors.black),
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 20),
-                          alignment: Alignment.center,
-                          width: MediaQuery.sizeOf(context).width - 100,
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Obx(
-                            () => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    controller.index.value++;
-                                    controller.nextQuestions();
-                                  },
-                                  child: Text(
-                                      'A. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![0]}'),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    controller.index.value++;
-                                    controller.nextQuestions();
-                                  },
-                                  child: Text(
-                                      'B. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![1]}'),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    controller.index.value++;
-                                    controller.nextQuestions();
-                                  },
-                                  child: Text(
-                                      'C. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![2]}'),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    controller.index.value++;
-                                    controller.nextQuestions();
-                                  },
-                                  child: Text(
-                                      'D. ${controller.homeModel!.value!.resultsModel![controller.index.value].correct_answer}'),
-                                ),
-                              ],
-                            ),
+                        Obx(
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              options(
+                                  'A. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![0]}'),
+                              options(
+                                  'B. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![1]}'),
+                              options(
+                                  'C. ${controller.homeModel!.value!.resultsModel![controller.index.value].incorrect_answers![2]}'),
+                              options(
+                                  'D. ${controller.homeModel!.value!.resultsModel![controller.index.value].correct_answer}'),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
           ),
+        ),
+      ),
+    );
+  }
+
+  InkWell options(String text) {
+    return InkWell(
+      onTap: () {
+        controller.index.value++;
+        controller.nextQuestions();
+      },
+      child: Container(
+        margin: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(10),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12), color: Colors.white),
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.black, fontSize: 18),
         ),
       ),
     );
