@@ -14,13 +14,11 @@ class HomeController extends GetxController {
 
   Future<void> nextQuestions() async {
     if (homeModel!.value != null &&
-        index.value < homeModel!.value!.resultsModel!.length - 1) {
+        index.value != homeModel!.value!.resultsModel!.length - 1) {
       index.value++;
-    } else {
-      index.value = 0;
-      await quizApi();
     }
   }
+}
 /*
   String calculateResult() {
     int correctAnswers = 0;
@@ -32,4 +30,3 @@ class HomeController extends GetxController {
     return '$correctAnswers/${homeModel!.value!.resultsModel!.length}';
   }
 */
-}
