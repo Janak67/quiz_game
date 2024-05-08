@@ -15,7 +15,7 @@ class ApiHelper {
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       HomeModel homeModel = HomeModel.mapToModel(json);
-      print(homeModel);
+      print('------------${response.body}---------');
       return homeModel;
     }
     return null;

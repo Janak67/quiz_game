@@ -35,3 +35,10 @@ class ResultsModel {
         incorrect_answers: m1['incorrect_answers']);
   }
 }
+
+class QuizModel {
+  String? correct_answer, question;
+  List? option;
+
+  QuizModel({this.correct_answer, this.question, this.option});
+}
