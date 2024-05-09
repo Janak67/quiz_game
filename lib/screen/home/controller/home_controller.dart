@@ -51,7 +51,7 @@ class HomeController extends GetxController {
           index.value++;
         } else {
           timer.cancel();
-          Get.toNamed('result');
+          Get.offAllNamed('result');
         }
         second.value = 20;
       }

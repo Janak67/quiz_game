@@ -120,7 +120,7 @@ class _QuizScreenState extends State<QuizScreen> {
           controller.second.value = 20;
           controller.index.value++;
         } else {
-          Get.toNamed('result');
+          Get.offAllNamed('result');
         }
       },
       child: Container(
