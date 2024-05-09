@@ -11,11 +11,12 @@ class HomeController extends GetxController {
   RxInt totalResult = 0.obs;
   RxInt second = 20.obs;
 
+  Timer? time;
+
   Future<void> quizApi() async {
     HomeModel? h1 = await ApiHelper.apiHelper.quizApiCall();
     homeModel.value = h1;
     randomData();
-    update();
   }
 
   void randomData() {
@@ -43,9 +44,10 @@ class HomeController extends GetxController {
   }
 
   void setTimer() {
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+    time = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (second > 0 && index.value != quizList.length) {
         second.value--;
+        print("*-*-*-*- $second *-*-*-*");
       } else {
         if (index.value != quizList.length - 1) {
           index.value++;

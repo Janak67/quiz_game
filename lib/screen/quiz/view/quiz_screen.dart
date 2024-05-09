@@ -120,6 +120,7 @@ class _QuizScreenState extends State<QuizScreen> {
           controller.second.value = 20;
           controller.index.value++;
         } else {
+          controller.time!.cancel();
           Get.offAllNamed('result');
         }
       },
