@@ -27,24 +27,65 @@ class _ResultScreenState extends State<ResultScreen> {
           ),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  '${controller.totalResult.value} / ${controller.quizList.length}',
-                  style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.bold),
+                const SizedBox(height: 50),
+                const Text(
+                  'Congrats!',
+                  style: TextStyle(
+                      fontSize: 58,
+                      fontFamily: 'theren',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.totalResult.value = 0;
-                    controller.index.value = 0;
-                    controller.second.value = 20;
-                    controller.quizList.value = [];
-                    Get.offAllNamed('home');
-                  },
-                  child: const Text('Replay'),
+                const Spacer(),
+                const Text(
+                  'YOUR SCORE',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                      fontFamily: 'theren'),
                 ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      '${controller.totalResult.value}/${controller.quizList.length}',
+                      style: const TextStyle(
+                          fontSize: 48,
+                          fontFamily: 'theren',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Text(
+                      '🪙 +90 points',
+                      style: TextStyle(
+                          fontSize: 26,
+                          fontFamily: 'theren',
+                          color: Colors.white),
+                    )
+                  ],
+                ),
+                Image.asset('assets/img/win.png', height: 200),
+                const Spacer(),
+                SizedBox(
+                  width: 180,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      controller.totalResult.value = 0;
+                      controller.index.value = 0;
+                      controller.second.value = 20;
+                      controller.quizList.value = [];
+                      Get.offAllNamed('home');
+                    },
+                    child: const Text(
+                      'Play again',
+                      style: TextStyle(fontSize: 26, fontFamily: 'theren'),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 80),
               ],
             ),
           ),

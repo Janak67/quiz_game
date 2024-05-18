@@ -56,7 +56,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                       Text(
                                         '${controller.second}',
                                         style: const TextStyle(
-                                            color: Colors.black, fontSize: 20),
+                                            fontFamily: 'theren', fontSize: 25),
                                       ),
                                       SizedBox(
                                         width: 50,
@@ -73,20 +73,22 @@ class _QuizScreenState extends State<QuizScreen> {
                                 ),
                               ],
                             ),
-                            Image.asset('assets/img/idea.webp', width: 200),
+                            Image.asset('assets/img/idea.webp', width: 180),
                             const SizedBox(height: 25),
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 '${controller.index.value + 1} Question :-',
                                 style: const TextStyle(
-                                    color: Colors.black54, fontSize: 15),
+                                    fontFamily: 'theren', fontSize: 25),
                               ),
                             ),
                             Text(
                               '${controller.quizList[controller.index.value].question}',
                               style: const TextStyle(
-                                  fontSize: 20, color: Colors.black),
+                                  fontFamily: 'theren',
+                                  fontSize: 28,
+                                  color: Colors.black),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +134,7 @@ class _QuizScreenState extends State<QuizScreen> {
             borderRadius: BorderRadius.circular(12), color: Colors.white),
         child: Text(
           text,
-          style: const TextStyle(color: Colors.black, fontSize: 18),
+          style: const TextStyle(fontFamily: 'theren', fontSize: 26),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:quiz_game/screen/home/model/home_model.dart';
 import 'package:quiz_game/utils/api_helper.dart';

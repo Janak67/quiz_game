@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../controller/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,12 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Get.toNamed('quiz');
                 },
-                child: Text(
+                child: const Text(
                   'Start',
-                  style: GoogleFonts.pressStart2p(
-                      fontSize: 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 50, fontFamily: 'theren', color: Colors.black),
                 ),
               ),
             ),
