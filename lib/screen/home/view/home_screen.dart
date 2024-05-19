@@ -25,23 +25,23 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Stack(
           children: [
             Image.asset(
-              'assets/img/start.png',
+              'assets/img/bg.jpeg',
               height: MediaQuery.sizeOf(context).height,
               width: MediaQuery.sizeOf(context).width,
               fit: BoxFit.cover,
             ),
-            Align(
-              alignment: Alignment.center,
-              child: TextButton(
-                onPressed: () {
-                  Get.toNamed('quiz');
-                },
-                child: const Text(
-                  'Start',
-                  style: TextStyle(
-                      fontSize: 50, fontFamily: 'theren', color: Colors.black),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: InkWell(
+                    onTap: () => Get.toNamed('quiz'),
+                    child: Image.asset('assets/img/quiz.png', height: 100),
+                  ),
                 ),
-              ),
+                const SizedBox(height: 30),
+              ],
             ),
           ],
         ),

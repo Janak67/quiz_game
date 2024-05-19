@@ -83,7 +83,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                     fontFamily: 'theren', fontSize: 25),
                               ),
                             ),
-                            Text(
+                            SelectableText(
                               '${controller.quizList[controller.index.value].question}',
                               style: const TextStyle(
                                   fontFamily: 'theren',
