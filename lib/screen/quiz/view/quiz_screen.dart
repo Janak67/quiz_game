@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_game/screen/home/controller/home_controller.dart';
+import 'package:quiz_game/utils/text_style.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -53,11 +54,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                   () => Stack(
                                     alignment: Alignment.center,
                                     children: [
-                                      Text(
-                                        '${controller.second}',
-                                        style: const TextStyle(
-                                            fontFamily: 'theren', fontSize: 25),
-                                      ),
+                                      Text('${controller.second}',
+                                          style: txt25),
                                       SizedBox(
                                         width: 50,
                                         height: 50,
@@ -78,18 +76,12 @@ class _QuizScreenState extends State<QuizScreen> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                '${controller.index.value + 1} Question :-',
-                                style: const TextStyle(
-                                    fontFamily: 'theren', fontSize: 25),
-                              ),
+                                  '${controller.index.value + 1} Question :-',
+                                  style: txt25),
                             ),
                             SelectableText(
-                              '${controller.quizList[controller.index.value].question}',
-                              style: const TextStyle(
-                                  fontFamily: 'theren',
-                                  fontSize: 28,
-                                  color: Colors.black),
-                            ),
+                                '${controller.quizList[controller.index.value].question}',
+                                style: txt28),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -132,11 +124,8 @@ class _QuizScreenState extends State<QuizScreen> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12), color: Colors.white),
-        child: Text(
-          text,
-          style: const TextStyle(fontFamily: 'theren', fontSize: 26),
-        ),
+        child: Text(text, style: txt25),
       ),
     );
   }
-}
+} /*143*/

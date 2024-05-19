@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_game/screen/home/controller/home_controller.dart';
+import 'package:quiz_game/utils/text_style.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -29,41 +30,17 @@ class _ResultScreenState extends State<ResultScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 50),
-                const Text(
-                  'Congrats!',
-                  style: TextStyle(
-                      fontSize: 58,
-                      fontFamily: 'theren',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
+                Text('Congrats!', style: txtCongrats),
                 const Spacer(),
-                const Text(
-                  'YOUR SCORE',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 26,
-                      fontFamily: 'theren'),
-                ),
+                Text('YOUR SCORE', style: txtScore),
                 const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      '${controller.totalResult.value}/${controller.quizList.length}',
-                      style: const TextStyle(
-                          fontSize: 48,
-                          fontFamily: 'theren',
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const Text(
-                      '🪙 +90 points',
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontFamily: 'theren',
-                          color: Colors.white),
-                    )
+                        '${controller.totalResult.value}/${controller.quizList.length}',
+                        style: txtResult),
+                    Text('🪙 +90 points', style: txt26)
                   ],
                 ),
                 Image.asset('assets/img/win.png', height: 200),
@@ -79,10 +56,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       controller.quizList.value = [];
                       Get.offAllNamed('home');
                     },
-                    child: const Text(
-                      'Play again',
-                      style: TextStyle(fontSize: 26, fontFamily: 'theren'),
-                    ),
+                    child: Text('Play again', style: txtReplay),
                   ),
                 ),
                 const SizedBox(height: 80),
